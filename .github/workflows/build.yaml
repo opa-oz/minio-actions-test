@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Upload to MinIO
-        uses: yakubique/minio-upload@v1.1.0
+        uses: yakubique/minio-upload@v1.1.1
         with:
             endpoint: ${{ secrets.MINIO_ENDPOINT }}
             access_key: ${{ secrets.MINIO_ACCESS_KEY }}
