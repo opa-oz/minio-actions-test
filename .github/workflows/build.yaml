@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Upload to MinIO
-        uses: yakubique/minio-upload@v1.0.5
+        uses: yakubique/minio-upload@v1.1
         with:
             endpoint: ${{ secrets.MINIO_ENDPOINT }}
             access_key: ${{ secrets.MINIO_ACCESS_KEY }}
@@ -20,3 +20,13 @@ jobs:
             source: ./subject.txt
             target: '/test'
             insecure: true
+      - name: Download from MinIO
+        uses: yakubique/minio-download@v1.1
+        with:
+          endpoint: ${{ secrets.MINIO_ENDPOINT }}
+          access_key: ${{ secrets.MINIO_ACCESS_KEY }}
+          secret_key: ${{ secrets.MINIO_SECRET_KEY }}
+          bucket: minio-actions
+          # Leading slash is required
+          source: /test/subject.txt
+          target: './downloaded.txt'
