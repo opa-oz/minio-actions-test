@@ -18,7 +18,7 @@ jobs:
             secret_key: ${{ secrets.MINIO_SECRET_KEY }}
             bucket: minio-actions
             source: ./subject.txt
-            target: '/test'
+            target: '/test/subject.txt'
             insecure: true
       - name: Download from MinIO
         uses: yakubique/minio-download@v1.1
