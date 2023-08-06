@@ -1,0 +1,22 @@
+name: Test upload/download
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: amd64
+    steps:
+      - uses: actions/checkout@v3
+      - name: Upload to MinIO
+        uses: https://github.com/yakubique/minio-upload@v1.0.1
+        with:
+            endpoint: ${{ secrets.MINIO_ENDPOINT }}
+            access_key: ${{ secrets.MINIO_ACCESS_KEY }}
+            secret_key: ${{ secrets.MINIO_SECRET_KEY }}
+            bucket: minio-actions
+            source: ./subject.txt
+            target: '/test'
+            insecure: true
